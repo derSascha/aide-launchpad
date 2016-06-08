@@ -1,0 +1,12 @@
+--- a/debian/cron.daily/aide        2016-06-08 12:38:56.375424351 +0200
++++ b/debian/cron.daily/aide        2016-06-08 12:38:37.783396980 +0200
+@@ -457,6 +457,8 @@
+                 printf >> "$FILTEREDMAIL" "$pkgs"
+                 if [ "$N_ADD" -eq "0" ] && [ "$N_REM" -eq "0" ] && [ "$N_CHG" -eq "0" ] ; then
+                     printf >> "$FILTEREDMAIL" "\nAIDE detected no changes after filtering package changes.\n\n"
++                    # No changes after filter? Override aide return value.
++                    ARETVAL=0
+                 else
+                     if [ "${#NF_ADD[@]}" -gt "0" ]; then
+                         printf >> "$FILTEREDMAIL" "$SEPERATOR_TEMPLATE" "Added" "$F_ADD"
+
